@@ -7,13 +7,14 @@ export default withApiAuthRequired(async function handler(req, res) {
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Request-Headers": "*",
+      // "api-key":process.env.MONGODB_DATA_API_KEY,
       jwtTokenString: accessToken,
     },
   };
   const fetchBody = {
     dataSource: process.env.MONGODB_DATA_SOURCE,
-    database: "social_butterfly",
-    collection: "flutters",
+    database: "social_app",
+    collection: "minerals",
   };
   const baseUrl = `${process.env.MONGODB_DATA_API_URL}/action`;
 
@@ -31,12 +32,12 @@ export default withApiAuthRequired(async function handler(req, res) {
         res.status(200).json(readDataJson.documents);
         break;
       case "POST":
-        const flutter = req.body;
+        const mineral = req.body;
         const insertData = await fetch(`${baseUrl}/insertOne`, {
           ...fetchOptions,
           body: JSON.stringify({
             ...fetchBody,
-            document: flutter,
+            document: mineral,
           }),
         });
         const insertDataJson = await insertData.json();

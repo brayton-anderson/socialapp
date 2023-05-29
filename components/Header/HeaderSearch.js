@@ -58,7 +58,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const HeaderSearch = ({ setFlutters }) => {
+const HeaderSearch = ({ setMinerals }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const { classes } = useStyles();
 
@@ -67,16 +67,17 @@ const HeaderSearch = ({ setFlutters }) => {
     setSearchTerm(e.currentTarget.value);
 
     if(term.length > 2 || term.length === 0) {
-      const getFlutters = await fetch(`/api/flutter/${term}`)
-      const getFluttersJson = await getFlutters.json();
-      setFlutters(getFluttersJson);
+      const getMinerals = await fetch(`/api/mineral/${term}`)
+      const getMineralsJson = await getMinerals.json();
+      setMinerals(getMineralsJson);
     }
   };
 
   return (
     <Header height={56} className={classes.header}>
       <div className={classes.inner}>
-        <Logo width={240} />
+        {/* <Logo width={240} /> */}
+        <h3>Global Mineral Network</h3>
         <Group>
           <TextInput
             value={searchTerm}

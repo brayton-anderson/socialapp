@@ -14,7 +14,7 @@ export default function App(props) {
   return (
     <>
       <Head>
-        <title>SocialButterfly - MongoDB Atlas Data API Demo</title>
+        <title>Global Mineral Network - Unearth a world of beauty and knowledge!💎✨</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -32,18 +32,18 @@ export default function App(props) {
               theme={{
                 colors: {
                   brand: [
-                    "#00684A", // hightlight light
+                    "#fee43e", // hightlight light
                     "#fff",
                     "#fff",
                     "#fff",
                     "#fff",
-                    "#00ED64", // icon color dark
-                    "#00684A", // btn-primary light
-                    "#00ED64", // btn-hover light
-                    "#00684A", // btn-primary dark
-                    "#023430", // btn-hover, highlight dark
+                    "#9C8B1F", // icon color dark
+                    "#fee43e", // btn-primary light
+                    "#9C8B1F", // btn-hover light
+                    "#fee43e", // btn-primary dark
+                    "#000000", // btn-hover, highlight dark
                   ],
-                  // #00ED64, #00684A, #023430
+                  // #fee43e, #9C8B1F, #000000
                 },
                 primaryColor: "brand",
                 colorScheme,

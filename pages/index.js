@@ -3,14 +3,14 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useSetUser } from "../context/UserContext";
 import { AppShell, LoadingOverlay } from "@mantine/core";
 import Navbar from "../components/Navbar/Navbar";
-import Flutters from "../components/Flutters/Flutters";
-import CreateFlutter from "../components/Flutters/CreateFlutter";
+import Minerals from "../components/Minerals/Minerals";
+import CreateMineral from "../components/Minerals/CreateMineral";
 import HeaderSearch from "../components/Header/HeaderSearch";
 import Profile from "../components/Profile/Profile";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [flutters, setFlutters] = useState([]);
+  const [minerals, setMinerals] = useState([]);
   const [page, setPage] = useState("Home");
   const setUser = useSetUser();
 
@@ -20,9 +20,9 @@ export default function Home() {
       const getUserJson = await getUser.json();
       setUser(getUserJson);
 
-      const getFlutters = await fetch("/api/flutter");
-      const getFluttersJson = await getFlutters.json();
-      setFlutters(getFluttersJson);
+      const getMinerals = await fetch("/api/mineral");
+      const getMineralsJson = await getMinerals.json();
+      setMinerals(getMineralsJson);
 
       setIsLoading(false);
     })();
@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <AppShell
-      header={<HeaderSearch setFlutters={setFlutters} />}
+      header={<HeaderSearch setMinerals={setMinerals} />}
       navbar={<Navbar page={page} setPage={setPage} />}
       styles={(theme) => ({
         main: {
@@ -44,8 +44,8 @@ export default function Home() {
       <LoadingOverlay visible={isLoading} />
       {page === "Home" && (
         <>
-          <CreateFlutter setFlutters={setFlutters} />
-          <Flutters flutters={flutters} setFlutters={setFlutters} />
+          <CreateMineral setMinerals={setMinerals} />
+          <Minerals minerals={minerals} setMinerals={setMinerals} />
         </>
       )}
       {page === "Profile" && <Profile />}

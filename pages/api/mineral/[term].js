@@ -12,28 +12,38 @@ export default withApiAuthRequired(async function handler(req, res) {
   };
   const fetchBody = {
     dataSource: process.env.MONGODB_DATA_SOURCE,
-    database: "social_butterfly",
-    collection: "flutters",
+    database: "social_app",
+    collection: "minerals",
   };
   const baseUrl = `${process.env.MONGODB_DATA_API_URL}/action`;
 
   try {
     switch (req.method) {
-      case "PUT":
-        const updateData = await fetch(`${baseUrl}/updateOne`, {
+      case "GET":
+        const term = req.query.term;
+        const readData = await fetch(`${baseUrl}/aggregate`, {
           ...fetchOptions,
           body: JSON.stringify({
             ...fetchBody,
-            filter: { _id: { $oid: req.body._id } },
-            update: {
-              [req.body.action]: {
-                likes: req.body.userId,
+            pipeline: [
+              {
+                $search: {
+                  index: "default",
+                  text: {
+                    query: term,
+                    path: {
+                      wildcard: "*",
+                    },
+                    fuzzy: {},
+                  },
+                },
               },
-            },
+              { $sort: { postedAt: -1 } },
+            ],
           }),
         });
-        const updateDataJson = await updateData.json();
-        res.status(200).json(updateDataJson);
+        const readDataJson = await readData.json();
+        res.status(200).json(readDataJson.documents);
         break;
       default:
         res.status(405).end();
