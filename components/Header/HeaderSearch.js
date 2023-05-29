@@ -77,7 +77,7 @@ const HeaderSearch = ({ setMinerals }) => {
     <Header height={56} className={classes.header}>
       <div className={classes.inner}>
         {/* <Logo width={240} /> */}
-        <h3>Global Mineral Network</h3>
+        <h3>Global Mineral Networks</h3>
         <Group>
           <TextInput
             value={searchTerm}
