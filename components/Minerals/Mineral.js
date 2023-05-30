@@ -16,7 +16,7 @@ import { useForm } from "@mantine/form";
 import { showNotification } from '@mantine/notifications';
 import { Edit, Trash, Heart, Share, BrandTwitter, Check } from "tabler-icons-react";
 
-const tweetUrl = "https://twitter.com/intent/tweet?url=https%3A%2F%2Fglobalmineralnetworks.com%2F&text=Check%20out%20this%20cool%20social%20media%20Jamstack%20app%20I%20made%20using%20the%20@MongoDB%20Data%20API%2C%20@Vercel%20serverless%20functions%2C%20@GitHub%2C%20and%20@Auth0%20for%20user%20authentication%21%21%21";
+const tweetUrl = "https://twitter.com/intent/tweet?url=https%3A%2F%2Fglobalmineralnetworks.com%2F&text=";
 
 const useStyles = createStyles((theme) => ({
   mineral: {
@@ -233,7 +233,7 @@ const Mineral = ({ mineral, setMinerals }) => {
                         <BrandTwitter size={16} color={theme.colors.blue[4]} />
                       }
                       component="a"
-                      href={tweetUrl}
+                      href={tweetUrl +body.replaceAll(' ', '\%20')}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
